@@ -22,9 +22,9 @@
                         <h1><img src="/images/logo.jpg" alt=""></h1>
                      
                         <form class="login__input" method="post" action="/auth/join">
-                            <input type="text" name="id" placeholder="휴대폰 번호 또는 이메일 주소">
-                            <input type="password" name="password" id="password" placeholder="성명">
-                            <input type="password" name="password" id="password" placeholder="사용자이름">
+                            <input type="text" name="email" placeholder="휴대폰 번호 또는 이메일 주소">
+                            <input type="text" name="name" id="name" placeholder="성명">
+                            <input type="text" name="username" id="username" placeholder="사용자이름">
                             <input type="password" name="password" id="password" placeholder="비밀번호">
                             <button>가입</button>
                         </form>
