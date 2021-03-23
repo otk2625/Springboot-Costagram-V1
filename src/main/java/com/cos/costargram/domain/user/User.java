@@ -47,7 +47,7 @@ public class User {
 	private RoleType role; // ADMIN, USER
 
 	
-	private String profileImage;
+	private String profileImageUrl;
 	private String provider; //제공자 Google, Facebook, Naver
 	
 	@CreationTimestamp
