@@ -1,4 +1,4 @@
-package com.cos.costargram.web.dto;
+package com.cos.costargram.web.dto.auth;
 
 import java.sql.Timestamp;
 

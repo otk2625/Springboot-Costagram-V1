@@ -1,6 +1,7 @@
 package com.cos.costargram.domain.user;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,9 +10,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.cos.costargram.domain.image.Image;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
@@ -46,6 +49,9 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	private RoleType role; // ADMIN, USER
 
+	
+	@OneToMany(mappedBy = "user")
+	private List<Image> images;
 	
 	private String profileImageUrl;
 	private String provider; //제공자 Google, Facebook, Naver
