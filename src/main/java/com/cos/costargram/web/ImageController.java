@@ -20,14 +20,16 @@ public class ImageController {
 		//ssar이 누구를 팔로우 했는지 정보를 알아야함. ->cos
 		//ssar -> image 1 (cois), image 2 (cos)
 		
+		
+		
 		model.addAttribute("images", imageService.피드이미지(principalDetails.getUser().getId()));
 		
 		return "image/feed";
 	}
 	
-	@GetMapping("/image/explor")
+	@GetMapping("/image/explore")
 	public String explore() {
-		return "image/explor";
+		return "image/explore";
 	}
 	
 	@GetMapping("/image/upload")

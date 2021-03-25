@@ -1,15 +1,29 @@
 package com.cos.costargram.web;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cos.costargram.config.auth.PrincipalDetails;
+import com.cos.costargram.service.UserService;
+import com.cos.costargram.web.dto.user.UserProfileRespDto;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Controller
 public class UserController {
 	
+	private final UserService userService;
+	
 	@GetMapping("/user/{id}")
-	public String profile(@PathVariable int id) {
+	public String profile(@PathVariable int id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) throws IllegalAccessException {
+		
+		UserProfileRespDto profileRespDto = userService.회원프로필( id,principalDetails.getUser().getId());
+		model.addAttribute("dto", profileRespDto);
+		
 		
 		return "user/profile";
 	}
