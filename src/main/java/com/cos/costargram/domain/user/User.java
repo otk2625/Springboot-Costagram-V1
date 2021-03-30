@@ -50,7 +50,7 @@ public class User {
 	private RoleType role; // ADMIN, USER
 
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user") //follow 무한참조 막아야함
 	private List<Image> images;
 	
 	private String profileImageUrl;
