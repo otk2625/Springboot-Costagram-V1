@@ -59,6 +59,23 @@
   font-weight: normal;
   font-family: "Montserrat", sans-serif;
   margin-right: 30px;
+  
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100px;
+  
+}
+.profile .profile-right .name-group p {
+  font-weight: normal;
+  font-family: "Montserrat", sans-serif;
+  margin-right: 30px;
+  
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100px;
+  height: 20px;
 }
 .profile .profile-right .name-group .cta {
   margin-right: 10px;
