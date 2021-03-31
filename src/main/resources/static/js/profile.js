@@ -1,62 +1,122 @@
 
-//구독 정보보는 함수
+// 구독 정보 보는 함수
 document.querySelector("#subscribeBtn").onclick = (e) => {
-	e.preventDefault();
-	document.querySelector(".modal-follow").style.display = "flex";
-
-	//ajax 통신후에 json 리턴 -> javascript오브젝트 변경 => for문 돌면서 뿌리기  
-
-	let userId = $("#userId").val();
-
-	console.log(e);
-
-	$.ajax({
-		url: `/user/${userId}/follow`
-	}).done((res) => {
-		
-		$("#follow_list").empty();
-		res.data.forEach((u) => {
-			console.log(u);
-			let item = makeSubScribeInfo(u);
-			$("#follow_list").append(item);
-		})
-
-
-	}).fail((error) => {
-		alert("오류 : "+ error);
-	});
-
-
-
-
+  e.preventDefault();
+  document.querySelector(".modal-follow").style.display = "flex";
+  
+  // ajax 통신 후에 json 리턴 -> javaScript 오브젝트 변경 => for문 돌면서 뿌리기
+  
+  let userId=$("#userId").val();
+  
+ $.ajax({
+  url:`/user/${userId}/follow`,
+ }).done((res)=>{
+ 
+  $("#follow_list").empty();
+  
+  res.data.forEach((u)=>{
+    console.log(2,u);
+    let item=makeSubscribeInfo(u);
+    $("#follow_list").append(item);
+  })
+ }).fail((error)=>{
+  alert("오류 : "+error);
+ });
+ 
+ 
 };
 
-function makeSubScribeInfo(u) {
-	let item = `<div class="follower__item id="follow-${u.userId}">`;
-	item += `<div class="follower__img">`;
-	item += `<img src="/images/profile.jpeg" alt="">`;
-	item += `</div>`;
-	item += `<div class="follower__text">`;
-	item += `<h2>${u.username}</h2>`;
-	item += `</div>`;
-	item += ` <div class="follower__btn">`;
-	if(!u.equalState){
-		if(u.followState){
-			item += `<button class="cta blue" click="follow_delete(${u.userId})">구독취소</button>`;
-		}else {
-			item += `<button class="cta" id="follow()">구독하기</button>`;
-		}
-	}
+
+function makeSubscribeInfo(u){
+  let item=`<div class="follower__item" id="follow-${u.userId}">`;
+  item+=`<div class="follower__img"><img src="/images/profile.jpeg" alt=""></div>`;
+  item+=`<div class="follower__text">`;
+  item+=`<h2>${u.username}</h2>`;
+  item+=`</div>`;
+  
+  
+  if(!u.equalState){
+    if(u.followState){
+      item+=`<div class="follower__btn"><button class="cta blue" onclick="followOrUnFollow(${u.userId})">구독취소</button></div>`;
+    }else{
+      item+=`<div class="follower__btn"><button class="cta" onclick="followOrUnFollow(${u.userId})">구독하기</button></div>`;
+    }
+  }
+  item+=`</div>`;
+  return item;
+}
+
+
+function followOrUnFollow(userId){
+
+	let text=$(`#follow-${userId} button`).text();
 	
-	item += `</div>`;
-	item += `</div>`;
+	if(text==="구독취소"){
+	
+		$.ajax({
+		type:"delete",
+		url:"/follow/"+userId,
+		dataType:"json"
+	}).done((res)=>{
+		$(`#follow-${userId} button`).toggleClass("blue");
+		$(`#follow-${userId} button`).text("구독하기");
+		
+	});
+	
+	}else{
+	
+		$.ajax({
+		type:"post",
+		url:"/follow/"+userId,
+		dataType:"json"
+	}).done((res)=>{
+		$(`#follow-${userId} button`).toggleClass("blue");
+		$(`#follow-${userId} button`).text("구독취소");
+		
+	});
+	
+	}
 
-	return item;
+	
 }
 
-function follow_delete(userId){
-	console.log(userId);
+function followOrUnFollow1(userId){
+
+	let text=$(`#follow1-${userId} button`).text();
+	
+	
+	
+	if(text==="구독취소"){
+	
+		$.ajax({
+		type:"delete",
+		url:"/follow/"+userId,
+		dataType:"json"
+	}).done((res)=>{
+		$(`#follow1-${userId} button`).toggleClass("blue");
+		$(`#follow1-${userId} button`).text("구독하기");
+		
+	});
+	
+	}else{
+	
+		$.ajax({
+		type:"post",
+		url:"/follow/"+userId,
+		dataType:"json"
+	}).done((res)=>{
+		$(`#follow1-${userId} button`).toggleClass("blue");
+		$(`#follow1-${userId} button`).text("구독취소");
+		
+	});
+	
+	}
+
+	
 }
+
+
+
 
 function closeFollow() {
 	document.querySelector(".modal-follow").style.display = "none";

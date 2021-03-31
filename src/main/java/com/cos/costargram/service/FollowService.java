@@ -32,23 +32,22 @@ public class FollowService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<FollowRespDto> 팔로우리스트(int principalId, int pageUserId) {
+	public List<FollowRespDto> 팔로우리스트(int principalId, int pageUserId){
 		
-		StringBuffer sb = new StringBuffer();
-		sb.append("select u.id, u.username, u.profileImageurl,  ");
-		sb.append("if((select True from follow where fromUserId = ? and toUserid = u.id), true, false) followState, "); //principalDetails.User.id
-		sb.append("if(u.id=?, true, false) equalState ");
-		sb.append("from follow f inner join user u on f.toUserId = u.id ");
-		sb.append("where f.fromUserId = ? "); //pageUserId
+		StringBuffer sb=new StringBuffer();
+		sb.append("select u.id userId, u.username, u.profileImageUrl, ");
+		sb.append("if((select True from follow where fromUserId=? and toUserId=u.id),true,false) followState, "); //principalDetails.user.id
+		sb.append("if(u.id=?,true,false) equalState "); //principalDetails.user.id
+		sb.append("from follow f inner join user u on u.id= f.toUserId ");
+		sb.append("where f.fromUserId=?");  // pageUserId
 		
-		Query query = em.createNativeQuery(sb.toString())
+		Query query=em.createNativeQuery(sb.toString())
 				.setParameter(1, principalId)
 				.setParameter(2, principalId)
 				.setParameter(3, pageUserId);
-
 		
-		JpaResultMapper resultMapper = new JpaResultMapper();
-		List<FollowRespDto> followRespDtos = resultMapper.list(query, FollowRespDto.class);
+		JpaResultMapper result=new JpaResultMapper();
+		List<FollowRespDto> followRespDtos=result.list(query,FollowRespDto.class);
 		
 		return followRespDtos;
 	}
