@@ -6,10 +6,10 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
 
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cos.costargram.config.auth.PrincipalDetails;
 import com.cos.costargram.domain.image.Image;
@@ -80,5 +80,10 @@ public class ImageService {
 		//2. Tag저장
 		List<Tag> tags = TagUtils.parsingToTagObject(imageReqDto.getTags(), imageEntity);
 		tagRepository.saveAll(tags);
+	}
+
+	@Transactional(readOnly = true)
+	public List<Image> 인기사진(int principalId){
+		return imageRepository.mExplore(principalId);
 	}
 }

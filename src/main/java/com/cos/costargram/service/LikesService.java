@@ -25,6 +25,7 @@ public class LikesService {
 	public void 좋아요(int imageId, int id) {
 		
 		User user = userRepository.findById(id).get();
+		
 		Image image = imageRepository.findById(imageId).get();
 		
 		Likes likes = Likes.builder()
@@ -33,6 +34,8 @@ public class LikesService {
 				.build();
 		
 		likesRepository.save(likes);
+		
+		
 		
 		//likesRepository.mLike(imageId, id);
 		
