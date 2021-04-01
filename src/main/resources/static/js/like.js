@@ -5,7 +5,7 @@ function likeOrUnLike(imageId) {
 		  type: "POST",
 		  url: `/image/${imageId}/likes`,
 		  dataType: "json"
-	  }).done(res=>{
+	  }).done((res) => {
 		    let likeCountStr  = $(`#like_count_${imageId}`).text();
 		    let likeCount = Number(likeCountStr) + 1;
 		    $(`#like_count_${imageId}`).text(likeCount);
@@ -13,6 +13,7 @@ function likeOrUnLike(imageId) {
 		    _buttonI.classList.add("fas");
 		    _buttonI.classList.add("active");
 		    _buttonI.classList.remove("far");
+
 	  });
 	  
 	  
@@ -22,7 +23,7 @@ function likeOrUnLike(imageId) {
 		  type: "DELETE",
 		  url: `/image/${imageId}/likes`,
 		  dataType: "json"
-	  }).done(res=>{
+	  }).done((res) => {
 		    let likeCountStr  = $(`#like_count_${imageId}`).text();
 		    let likeCount = Number(likeCountStr) - 1;
 		    $(`#like_count_${imageId}`).text(likeCount);
@@ -30,6 +31,7 @@ function likeOrUnLike(imageId) {
 		    _buttonI.classList.remove("fas");
 		    _buttonI.classList.remove("active");
 		    _buttonI.classList.add("far");
+
 	  });  
 
   }

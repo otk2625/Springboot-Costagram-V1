@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cos.costargram.config.auth.PrincipalDetails;
 import com.cos.costargram.service.ImageService;
@@ -56,14 +57,14 @@ public class ImageController {
 	}
 	
 	@PostMapping("/image/{imageId}/likes")
-	public CMRespDto<?> like(@PathVariable int imageId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+	public @ResponseBody CMRespDto<?> like(@PathVariable int imageId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		
 		likesService.좋아요(imageId, principalDetails.getUser().getId());		
 		return new CMRespDto<>(1,null);
 	}
 	
 	@DeleteMapping("/image/{imageId}/likes")
-	public CMRespDto<?> unLike(@PathVariable int imageId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+	public @ResponseBody CMRespDto<?> unLike(@PathVariable int imageId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		
 		likesService.싫어요(imageId, principalDetails.getUser().getId());		
 		return new CMRespDto<>(1,null);
