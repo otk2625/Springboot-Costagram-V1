@@ -3,11 +3,15 @@ package com.cos.costargram.web;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.cos.costargram.config.auth.PrincipalDetails;
 import com.cos.costargram.service.ImageService;
+import com.cos.costargram.service.LikesService;
+import com.cos.costargram.web.dto.CMRespDto;
 import com.cos.costargram.web.dto.image.ImageReqDto;
 
 import lombok.RequiredArgsConstructor;
@@ -17,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class ImageController {
 
 	private final ImageService imageService;
+	private final LikesService likesService;
 	
 	@GetMapping({"/","/image/feed"})
 	public String feed(Model model,@AuthenticationPrincipal PrincipalDetails principalDetails) {
@@ -49,4 +54,22 @@ public class ImageController {
 		// 자신의 페이지로 돌아감
 		return "redirect:/user/"+principalDetails.getUser().getId();
 	}
+	
+	@PostMapping("/image/{imageId}/likes")
+	public CMRespDto<?> like(@PathVariable int imageId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+		
+		likesService.좋아요(imageId, principalDetails.getUser().getId());		
+		return new CMRespDto<>(1,null);
+	}
+	
+	@DeleteMapping("/image/{imageId}/likes")
+	public CMRespDto<?> unLike(@PathVariable int imageId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+		
+		likesService.싫어요(imageId, principalDetails.getUser().getId());		
+		return new CMRespDto<>(1,null);
+	}
+	
+	
+	
+	
 }
