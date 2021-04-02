@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="../layout/header.jsp"%>
 
-<input type="hidden" id="userId" value="${dto.user.id }" />
+<input type="hidden" id="userId" value="${dto.user.id}" /> 
 
 <!--프로필 섹션-->
 <section class="profile">
@@ -12,9 +11,8 @@
 
 		<!--유저이미지-->
 		<div class="profile-left">
-			<div class="profile-img-wrap story-border"
-				onclick="popup('.modal-image')">
-				<img src="/images/profile.jpeg" alt="">
+			<div class="profile-img-wrap story-border" onclick="popup('.modal-image')">
+				<img src="/upload/${dto.user.profileImageUrl }" alt="" onerror="this.src=`/images/user.jpg`" />
 				<svg viewbox="0 0 110 110">
                         <circle cx="55" cy="55" r="53" />
                     </svg>
@@ -26,9 +24,6 @@
 		<div class="profile-right">
 			<div class="name-group">
 				<h2>${dto.user.username}</h2>
-				<c:if test="${principal.user.id == user.id}">
-
-				</c:if>
 
 				<c:choose>
 					<c:when test="${principal.user.id == dto.user.id}">
@@ -40,28 +35,25 @@
 					<c:otherwise>
 						<c:choose>
 							<c:when test="${dto.followState}">
-								<div id="follow1-${dto.user.id}">
-									<button class="cta blue" onclick="followOrUnFollow1(${dto.user.id})">구독취소</button>
-								</div>
+								<button class="cta blue" onclick="followOrUnFollowProfile(${dto.user.id})"  id="follow_profile_btn">구독취소</button>
 							</c:when>
 							<c:otherwise>
-								<div id="follow1-${dto.user.id}">
-									<button class="cta" onclick="followOrUnFollow1(${dto.user.id})">구독하기</button>
-								</div>
+								<button class="cta" onclick="followOrUnFollowProfile(${dto.user.id})" id="follow_profile_btn">구독하기</button>
 							</c:otherwise>
 						</c:choose>
+
 					</c:otherwise>
 				</c:choose>
-
-
-
 
 			</div>
 			<div class="follow">
 				<ul>
-					<li><a href="">게시물<span>${dto.imageCount }</span></a></li>
-					<li><a href="" id="subscribeBtn">구독정보<span>${dto.followCount}</span></a>
-					</li>
+					<li><a href="">
+							게시물<span>${dto.imageCount}</span>
+						</a></li>
+					<li><a href="" id="subscribeBtn">
+							구독정보<span>${dto.followCount}</span>
+						</a></li>
 				</ul>
 			</div>
 			<div class="state">
@@ -86,12 +78,18 @@
 				<!--아이템들-->
 
 				<c:forEach var="image" items="${dto.user.images}">
+				
 					<div class="img-box">
-						<a href=""><img src="/upload/${image.postImageUrl}" alt=""></a>
+						<a href="">
+							<img src="/upload/${image.postImageUrl}" alt="">
+						</a>
 						<div class="comment">
-							<a href="#a" class=""><i class="fas fa-heart"></i><span>${image.likeCount}</span></a>
+							<a href="#a" class="">
+								<i class="fas fa-heart"></i><span>${image.likeCount}</span>
+							</a>
 						</div>
 					</div>
+					
 				</c:forEach>
 
 
@@ -105,8 +103,7 @@
 <!--로그아웃, 회원정보변경 모달-->
 <div class="modal-info">
 	<div class="modal">
-		<button onclick="location.href='/user/1/profileSetting'">회원정보
-			변경</button>
+		<button onclick="location.href='/user/1/profileSetting'">회원정보 변경</button>
 		<button onclick="location.href='/logout'">로그아웃</button>
 		<button onclick="closePopup('.modal-info')">취소</button>
 	</div>
@@ -136,12 +133,13 @@
 		</div>
 		<!--팔로워 헤더end-->
 
-
 		<!--팔로워 리스트-->
-		<div class="follower-list" id="follow_list"></div>
+		<div class="follower-list" id="follow_list">
+			
+			
+		</div>
+		
 		<!--팔로워 리스트end-->
-
-
 	</div>
 	<!--팔로워 박스end-->
 </div>

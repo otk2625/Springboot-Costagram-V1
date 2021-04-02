@@ -1,7 +1,7 @@
 @import "header.css";
 @import "footer.css";
 
-/*ì—…ë¡œë“œí˜ì´ì§€ ì¤‘ì•™ë°°ì¹˜*/
+/*¾÷·ÎµåÆäÀÌÁö Áß¾Ó¹èÄ¡*/
 .uploadContainer{
   background: #fff;
   display: flex;
@@ -10,7 +10,7 @@
   margin-top: 150px;
 }
 
-/*ì—…ë¡œë“œì„¹ì…˜*/
+/*¾÷·Îµå¼½¼Ç*/
 .upload {
   width: 600px;
   display: flex;
@@ -19,12 +19,12 @@
   border: 1px solid #dbdbdb;
 }
 
-/*ì—…ë¡œë“œë°•ìŠ¤ ë¡œê³ */
+/*¾÷·Îµå¹Ú½º ·Î°í*/
 .upload .upload-top {
   text-align: center;
 }
 
-/*ì—…ë¡œë“œë°•ìŠ¤ ì´ë¯¸ì§€*/
+/*¾÷·Îµå¹Ú½º ÀÌ¹ÌÁö*/
 .upload .upload-top img {
   width: 200px;
   margin: 10px 0 20px;
@@ -55,40 +55,40 @@
   background: #222;
 }
 
-/*ì—…ë¡œë“œ í¼*/
+/*¾÷·Îµå Æû*/
 .upload .upload-form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/*ì—…ë¡œë“œ ì¸í’‹*/
+/*¾÷·Îµå ÀÎÇ²*/
 .upload .upload-form input[type="file"] {
   margin: 30px 0;
   text-align: left;
 }
 
-/*ì—…ë¡œë“œ ì´ë¯¸ì§€ ë°•ìŠ¤*/
+/*¾÷·Îµå ÀÌ¹ÌÁö ¹Ú½º*/
 .upload .upload-form .upload-img {
   width: 400px;
   height: 300px;
   margin-bottom: 5px;
 }
 
-/*ì—…ë¡œë“œ ì´ë¯¸ì§€*/
+/*¾÷·Îµå ÀÌ¹ÌÁö*/
 .upload .upload-form .upload-img img {
   width: 100%;
   height: 100%;
 }
 
-/*ì´ë¯¸ì§€ì— ëŒ€í•œ ì„¤ëª…ë°•ìŠ¤*/
+/*ÀÌ¹ÌÁö¿¡ ´ëÇÑ ¼³¸í¹Ú½º*/
 .upload .upload-form .upload-form-detail {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/*ì´ë¯¸ì§€ì— ëŒ€í•œ ì„¤ëª…ì¸í’‹ + ë²„íŠ¼*/
+/*ÀÌ¹ÌÁö¿¡ ´ëÇÑ ¼³¸íÀÎÇ² + ¹öÆ°*/
 .upload .upload-form .upload-form-detail input,
 .upload .upload-form .upload-form-detail button {
   width: 340px;
@@ -115,4 +115,3 @@
   border-top: 1px solid #dbdbdb;
   color: #0095f6;
 }
-

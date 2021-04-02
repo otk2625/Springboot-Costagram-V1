@@ -34,7 +34,23 @@ spring:
   security:
     user:
       name: test
-      password: 1234   
+      password: 1234 
+    oauth2:
+      client:
+        registration:
+         google:
+            client-id: 320798410370-kfcalu4uieljo1fspvf4rgfg0488ajjm.apps.googleusercontent.com
+            client-secret: 4Cq1rtgS3Brr5RKPthmvViCA
+            scope:
+            - email
+            - profile
+            
+         facebook:
+            client-id: 816089115670514
+            client-secret: 57fdbf6b23052afeaadc421db8be984d
+            scope:
+            - email
+            - public_profile  
 
 file:
-  path: C:/instagram/costargram/src/main/resources/upload
+  path: D:\Tae\스프링툴\부엉이\Springboot-Costagram-V1/src/main/resources/upload/

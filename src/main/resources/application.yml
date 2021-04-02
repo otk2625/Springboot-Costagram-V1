@@ -53,4 +53,4 @@ spring:
             - public_profile  
 
 file:
-  path: D:\Tae\스프링툴\부엉이\Springboot-Costagram-V1/src/main/resources/upload/
+  path: C:\Users\Tae\git\Springboot-Costagram-V1\src\main\resources\upload/
