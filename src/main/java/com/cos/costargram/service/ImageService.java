@@ -8,6 +8,9 @@ import java.util.UUID;
 
 
 import org.springframework.beans.factory.annotation.Value;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,12 +33,13 @@ public class ImageService {
 	@Value("${file.path}") // application.yml 파일에 접근가능
 	private String uploadFolder;
 	
-	public List<Image> 피드이미지(int principalId){
+	@Transactional(readOnly = true)
+	public Page<Image> 피드이미지(int principalId, Pageable page){
 		
 		//1. principalId로 내가 팔로우 하고있는 사용자를 찾아야 됨.(한개이거나 컬렉션이거나)
 		//select * from image where userId in (select toUserId from follow where fromUserId = principalId(로그인 아이디));
 		
-		List<Image> images = imageRepository.mFeeds(principalId);
+		Page<Image> images = imageRepository.mFeeds(principalId, page);
 		
 		//좋아요 로직
 		images.forEach((image) -> {
