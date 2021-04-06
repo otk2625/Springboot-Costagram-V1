@@ -1,7 +1,5 @@
 package com.cos.costargram.domain.comment;
 
-
-
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -46,9 +44,6 @@ public class Comment {
 	@JoinColumn(name = "userId")
 	@ManyToOne
 	private User user;
-	
-	
-	
 	
 	@CreationTimestamp
 	private Timestamp createDate;
