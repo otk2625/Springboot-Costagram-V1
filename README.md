@@ -89,3 +89,12 @@ file:
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 ```
+
+### 기능
+- 로그인, 회원가입(구글, 페이스북)
+- feed 페이지 (스크롤기능 구현)
+- 좋아요, 댓글 기능
+- 팔로우기능 구현
+- 프로필 회원정보 수정 기능, 프로필 사진 변경 기능
+- 게시물 사진 올리기 기능
+- 익스플러로 페이지 기능
