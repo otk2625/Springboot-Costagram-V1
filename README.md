@@ -3,6 +3,9 @@
 ### 개요
 - 공부한 학습을 토대로 인스타그램 사이트를 모방한 클론코딩
 
+### 정리
+- https://blog.naver.com/xorud8241
+
 ### 의존성
 
 - Spring Boot DevTools
